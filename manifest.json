@@ -2,7 +2,7 @@
     "name": "MADAN'S AI Assistant",
     "short_name": "MADAN AI",
     "description": "Your personal AI voice assistant chatbot",
-    "start_url": "/MADANBOT.html",
+    "start_url": "./MADANBOT.html",
     "display": "standalone",
     "background_color": "#0f0f23",
     "theme_color": "#667eea",
@@ -61,13 +61,12 @@
         "utilities",
         "productivity"
     ],
-    "screenshots": [],
     "shortcuts": [
         {
             "name": "Admin Panel",
             "short_name": "Admin",
             "description": "View query logs",
-            "url": "/admin.html",
+            "url": "./admin.html",
             "icons": [
                 {
                     "src": "icons/icon-96x96.png",
