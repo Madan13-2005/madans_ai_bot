@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MADAN'S AI Assistant</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="description" content="MADAN'S AI - Your personal voice assistant chatbot">
+  <meta name="theme-color" content="#667eea">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MADAN AI">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="MADAN AI">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-128x128.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-content">
+        <div class="bot-avatar">
+          <i class="fas fa-robot"></i>
+          <span class="status-indicator"></span>
+        </div>
+        <div class="header-info">
+          <h1>MADAN'S AI</h1>
+          <span class="status-text" id="statusText">Online • Ready to help</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="action-btn" onclick="toggleVoiceOutput()" title="Toggle Voice Output" id="voiceToggleBtn">
+          <i class="fas fa-volume-up" id="voiceIcon"></i>
+        </button>
+        <button class="action-btn" onclick="clearChat()" title="Clear Chat">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        <button class="action-btn" onclick="toggleTheme()" title="Toggle Theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="action-btn" onclick="window.location.href='admin.html'" title="Admin Panel">
+          <i class="fas fa-user-shield"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Music Player Bar -->
+    <div class="music-player" id="musicPlayer">
+      <div class="music-info">
+        <i class="fas fa-music"></i>
+        <span id="musicTitle">No music playing</span>
+      </div>
+      <div class="music-controls">
+        <button onclick="stopMusic()" title="Stop Music">
+          <i class="fas fa-stop"></i>
+        </button>
+        <button onclick="closeMusicPlayer()" title="Close Player">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-box" id="chatBox">
+      <!-- Welcome Message -->
+      <div class="message bot-message welcome-message">
+        <div class="message-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <div class="message-bubble">
+            <p>👋 Hello! I'm <strong>MADAN'S AI</strong>, your voice assistant. How can I help you today?</p>
+          </div>
+          <span class="message-time">Just now</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- YouTube Player (Hidden) -->
+    <div class="youtube-container" id="youtubeContainer">
+      <div class="youtube-header">
+        <span>🎵 Now Playing</span>
+        <button onclick="closeYouTube()"><i class="fas fa-times"></i></button>
+      </div>
+      <iframe id="youtubePlayer" width="100%" height="200" src="" frameborder="0" allow="autoplay; encrypted-media"
+        allowfullscreen></iframe>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-avatar">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="typing-text">MADAN'S AI is thinking...</span>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-box">
+      <div class="input-wrapper">
+        <button class="mic-btn" onclick="startVoiceInput()" id="micBtn" title="Speak">
+          <i class="fas fa-microphone" id="micIcon"></i>
+        </button>
+        <textarea id="userInput" placeholder="Type or speak..." rows="1" onkeydown="handleKeyPress(event)"></textarea>
+        <div class="input-actions">
+          <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      <div class="input-footer">
+        <span>🎤 Click mic to speak • Press <kbd>Enter</kbd> to send</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Message copied!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
